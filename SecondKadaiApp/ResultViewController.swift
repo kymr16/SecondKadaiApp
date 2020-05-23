@@ -2,7 +2,7 @@
 //  ResultViewController.swift
 //  SecondKadaiApp
 //
-//  Created by 鹿山 玲子 on 2020/05/24.
+//  Created by 吉田 玲子 on 2020/05/24.
 //  Copyright © 2020 reiko.yoshida. All rights reserved.
 //
 
