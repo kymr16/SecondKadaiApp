@@ -17,18 +17,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //MEMO:ここの書き方はこれで良いのでしょうか・・
-        textField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)),for: UIControl.Event.editingChanged)
-    }
-
-    //フォーム入力完了後
-    //MEMO: @objcがついてしまうのですが古い書き方なのでしょうか
-    @objc func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.text == "" {
-            textFieldCheck(false)
-        } else {
-            textFieldCheck(true)
-        }
+        textField.delegate = self
     }
     
     //ResultViewControllerにユーザー名を渡す
@@ -47,6 +36,21 @@ class ViewController: UIViewController,UITextFieldDelegate {
         textFieldCheck(false)
     }
     
+    //フォーム入力完了後
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.text == "" {
+            return textFieldCheck(false)
+        } else {
+            return textFieldCheck(true)
+        }
+    }
+    
+     // キーボードを閉じる
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     //フォームが入力済みかどうかでボタンの表示を変更する
     func textFieldCheck(_ didEdit:Bool) -> () {
         if didEdit {
@@ -57,6 +61,5 @@ class ViewController: UIViewController,UITextFieldDelegate {
             submitButton.isEnabled = false
         }
     }
-    
 }
 
